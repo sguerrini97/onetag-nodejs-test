@@ -1,0 +1,17 @@
+
+version: '3'
+services:
+  database:
+    image: mongo:5
+    restart: unless-stopped
+    network_mode: "host"
+    command: mongod --quiet --logpath /dev/null
+  server:
+    build: .
+    restart: unless-stopped
+    network_mode: "host"
+    volumes:
+      - ./:/usr/src/app
+    depends_on:
+      - "database"
+

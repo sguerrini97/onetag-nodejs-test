@@ -1,0 +1,31 @@
+{
+  "name": "nodejs-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start:main": "node ./index.js",
+    "start:auth": "node __SEALED__/auth_service/auth_service.js",
+    "start:plants": "node __SEALED__/plants_service/plants_service.js",
+    "start:services": "concurrently --names \"Plants_API,Auth_API,Server\" --prefix-colors \"gray,gray,green\" \"npm run start:plants\" \"npm run start:auth\" \"npm run start:main\" --kill-others",
+    "start": "docker compose up --abort-on-container-exit --build --force-recreate --renew-anon-volumes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onetag-dev/nodejs-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onetag-dev/nodejs-test/issues"
+  },
+  "homepage": "https://github.com/onetag-dev/nodejs-test#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "express": "^4.18.2"
+  }
+}
