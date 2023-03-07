@@ -7,7 +7,7 @@ const {cypher} = require('../crypto');
         const app = express();
         app.use(express.urlencoded({ extended: false }));
         app.use(express.json());
-        app.get('access-token', (req, res) => {
+        app.get('/access-token', (req, res) => {
             const ttl = Date.now() + (1000 * 60 * 60);
             res.send({ 'TOKEN-V1': cypher(String(ttl)) });
         });

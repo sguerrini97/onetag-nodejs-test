@@ -28,7 +28,7 @@ const {decypher} = require('../crypto');
                     error: 'TOKEN-V1 http header invalid',
                 });
             }
-            if (ttl >= Date.now()) {
+            if (Date.now() > ttl) {
                 return res.status(403).send({
                     error: 'TOKEN-V1 expired',
                 });
