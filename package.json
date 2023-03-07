@@ -9,7 +9,7 @@
   "scripts": {
     "start:main": "nodemon --ignore __SEALED__ ./index.js",
     "start:auth": "node __SEALED__/auth_service/index.js",
-    "start:songs": "node __SEALED__/music_service/index.js",
+    "start:songs": "node __SEALED__/songs_service/index.js",
     "start:services": "concurrently --names \"Songs_API,Auth_API,Server\" \"npm run start:songs\" \"npm run start:auth\" \"npm run start:main\" --kill-others",
     "start": "docker compose up --abort-on-container-exit --build --force-recreate --renew-anon-volumes"
   },
@@ -28,6 +28,7 @@
     "@faker-js/faker": "^7.6.0",
     "concurrently": "^7.6.0",
     "express": "^4.18.2",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "uuid": "^9.0.0"
   }
 }
