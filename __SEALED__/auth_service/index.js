@@ -8,7 +8,8 @@ const {cypher} = require('../crypto');
         app.use(express.urlencoded({ extended: false }));
         app.use(express.json());
         app.get('access-token', (req, res) => {
-            res.send({ 'TOKEN-V1': cypher(Date.now().toString()) });
+            const ttl = Date.now() + (1000 * 60 * 60);
+            res.send({ 'TOKEN-V1': cypher(String(ttl)) });
         });
         app.listen(port, () => {
             console.log(`Listening on http://localhost:${port}`);
