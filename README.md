@@ -331,7 +331,7 @@ Restituisce un token per l'autenticazione del servizio esterno Songs ([vedi sopr
 
 ### Database
 
-Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm start```, in ascolto sulla sua porta di default.
+Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm start```, in ascolto su ```localhost``` alla sua porta di default.
 
 ### FAQ
 
