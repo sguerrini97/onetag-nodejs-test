@@ -11,15 +11,15 @@ Affinché il progetto possa essere avviato correttamente, è necessario che sull
 
 ### Cosa fare
 
-- Leggere attentamente questo README.
-- Clonare questo repository.
-- Estenderne i contenuti modificando il file ```index.js``` e/o aggiungendo tutti i file e/o le sottocartelle che il candidato ritiene necessari/e, con il fine di realizzare un'applicazione che rispetti la [specifica](#specifica).
-- Creare l'archivio .zip di consegna tramite il comando ```npm run build```.
-- Compilare il [form di consegna](https://docs.google.com/forms/d/e/1FAIpQLSe3D_gW8YQ4hO0WueD-kDVUsDDDeVSAdAUrZzeDYNLExiYRWA/viewform) caricando l'archivio prodotto al passo precedente. 
+1) Leggere attentamente questo README.
+2) Clonare questo repository.
+3) Estenderne i contenuti modificando il file ```index.js``` e/o aggiungendo tutti i file e/o le sottocartelle che il candidato ritiene necessari/e, con il fine di realizzare un'applicazione che rispetti la [specifica](#specifica).
+4) Creare l'archivio .zip di consegna tramite il comando ```npm run build```.
+5) Compilare il [form di consegna](https://docs.google.com/forms/d/e/1FAIpQLSe3D_gW8YQ4hO0WueD-kDVUsDDDeVSAdAUrZzeDYNLExiYRWA/viewform) caricando l'archivio prodotto al passo precedente. 
 
 ### Specifica
 
-Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una piccola applicazione in Node.js facendo uso del framework Express. L'applicazione da sviluppare consiste di un webserver (in ascolto all'URL http://localhost:8080) che deve esporre un'API con le seguenti rotte:
+Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una piccola applicazione in Node.js facendo uso del framework Express (già installato). L'applicazione da sviluppare consiste di un webserver (in ascolto all'URL http://localhost:8080) che deve esporre un'API con le seguenti rotte:
 
 -
     <table>
