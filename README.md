@@ -171,9 +171,11 @@ Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una
 
 ### Database
 
+Un'istanza locale di [MongoDB 5](https://www.mongodb.com/docs/v5.0/tutorial/getting-started/) è automaticamente avviata dal comando ```npm start```, in ascolto su ```localhost``` alla sua porta di default.
+
 Il database usato dall'applicazione **deve** chiamarsi ```test-nodejs```.
 
-La collection di MongoDB ```books``` deve contenere documenti che soddisfano il seguente schema:
+La collection ```books``` deve contenere documenti che soddisfano il seguente schema:
 
 ```
 {
@@ -348,15 +350,11 @@ Restituisce un token per l'autenticazione del servizio esterno [Songs](#songs). 
 </tbody>
 </table>
 
-### Database
-
-Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm start```, in ascolto su ```localhost``` alla sua porta di default.
-
 ### Tutti i comandi
 
 - ```npm start``` (o ```npm run start```) avvia tutti i processi dell'applicazione in dei container Docker:
-  - Un'istanza di MongoDB in ascolto su ```localhost``` alla sua porta di default. 
-  - L'API sviluppata dal candidato, con ```index.js``` come entry point ed in ascolto all'URL http://localhost:8080. Questo processo è avviato tramite [nodemon](https://nodemon.io/), configurato per riavviare automaticamente il processo in seguito a qualsiasi modifica dei suoi sorgenti (```index.js``` e tutti i moduli da esso eventualmente importati).
+  - Un'istanza di [MongoDB 5](https://www.mongodb.com/docs/v5.0/tutorial/getting-started/) in ascolto su ```localhost``` alla sua porta di default. 
+  - L'API sviluppata dal candidato, con ```index.js``` come entry point ed in ascolto all'URL http://localhost:8080. Per favorire lo sviluppo, questo processo è avviato tramite [nodemon](https://nodemon.io/), configurato per riavviare automaticamente il processo in seguito a qualsiasi modifica dei suoi sorgenti (```index.js``` e tutti i moduli da esso eventualmente importati).
   - Il servizio esterno [Songs](#songs), in ascolto all'URL http://localhost:9009.
   - Il servizio esterno [Auth](#auth), in ascolto all'URL http://localhost:9010.
 - ```npm run build```: comprime la cartella del progetto (```node_modules``` esclusi) in un archivio al percorso ```./dist/consegna.zip```. Questo archivio deve essere consegnato tramite il [form di consegna](https://docs.google.com/forms/d/e/1FAIpQLSe3D_gW8YQ4hO0WueD-kDVUsDDDeVSAdAUrZzeDYNLExiYRWA/viewform).
