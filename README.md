@@ -354,7 +354,8 @@ Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm sta
 
 ### Tutti i comandi
 
-- ```npm start``` (o ```npm run start```) avvia tutti i processi dell'applicazione in un container Docker:
+- ```npm start``` (o ```npm run start```) avvia tutti i processi dell'applicazione in dei container Docker:
+  - Un'istanza di MongoDB in ascolto su ```localhost``` alla sua porta di default. 
   - L'API sviluppata dal candidato, con ```index.js``` come entry point ed in ascolto all'URL http://localhost:8080. Questo processo è avviato tramite [nodemon](https://nodemon.io/), configurato per riavviare automaticamente il processo in seguito a qualsiasi modifica dei suoi sorgenti (```index.js``` e tutti i moduli da esso eventualmente importati).
   - Il servizio esterno [Songs](#songs), in ascolto all'URL http://localhost:9009.
   - Il servizio esterno [Auth](#auth), in ascolto all'URL http://localhost:9010.
@@ -372,11 +373,17 @@ Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm sta
 
 - **È ammesso installare nuovi packages tramite npm?**<br>
   Si, è ammesso installare qualsivoglia nuovo package.
+  > **Nota**: Dopo aver installato un nuovo package è necessario riavviare il comando ```npm start```.
 
 <hr>
 
 - **È necessario adottare qualche stile di scrittura di codice JavaScript in particolare?**<br>
   È preferibile la scrittura di codice JavaScript ES6 e l'uso dei costrutti ```Promise/async/await``` per la gestione di task asincroni, ove possibile.
+
+<hr>
+
+- **È possibile consegnare un'implementazione parziale della specifica?**<br>
+  È possibile consegnare un'implementazione parziale, che sarà valutata con un punteggio inferiore.
 
 
 
