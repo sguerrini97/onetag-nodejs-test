@@ -1,5 +1,5 @@
 
-version: '3'
+version: "3"
 services:
   database:
     image: mongo:5
@@ -7,7 +7,9 @@ services:
     network_mode: "host"
     command: mongod --quiet --logpath /dev/null
   server:
-    build: .
+    build:
+      context: .
+      dockerfile: __SEALED__/Dockerfile
     restart: unless-stopped
     network_mode: "host"
     volumes:

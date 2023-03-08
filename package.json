@@ -11,7 +11,7 @@
     "start:auth": "node __SEALED__/auth_service/index.js",
     "start:songs": "node __SEALED__/songs_service/index.js",
     "start:services": "concurrently --names \"Songs_API,Auth_API,Server\" \"npm run start:songs\" \"npm run start:auth\" \"npm run start:main\" --kill-others",
-    "start": "docker compose up --abort-on-container-exit --build --force-recreate --renew-anon-volumes"
+    "start": "docker compose --project-directory . -f __SEALED__/docker-compose.yml up --abort-on-container-exit --build --force-recreate --renew-anon-volumes"
   },
   "repository": {
     "type": "git",
