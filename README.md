@@ -332,7 +332,7 @@ Il servizio esterno Auth viene avviato automaticamente dal comando ```npm start`
 <td>GET</td>
 <td>
 
-Restituisce un token per l'autenticazione del servizio esterno [Songs](#songs).
+Restituisce un token per l'autenticazione del servizio esterno [Songs](#songs). Il token **è valido per un'ora** in seguito alla sua creazione.
 
 </td>
 <td>
