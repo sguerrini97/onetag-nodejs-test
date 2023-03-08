@@ -24,11 +24,11 @@ Si estenda questo package npm con il fine di realizzare una piccola applicazione
     <td>
     
     ```HTML
-        <!DOCTYPE html>
-        <html>
-            <head></head>
-            <body>Hello World!</body>
-        </html>
+    <!DOCTYPE html>
+    <html>
+        <head></head>
+        <body>Hello World!</body>
+    </html>
     ```
     
     </td>
@@ -91,14 +91,14 @@ Si estenda questo package npm con il fine di realizzare una piccola applicazione
     <td>
     
     ```json
-        {
-          "name": "Treasure Island",
-          "author": "Robert Louis Stevensonr",
-          "publisher": "Cassell and Company",
-          "edition": 1,
-          "pages": 292,
-          "releaseDate": "1983-11-14"
-        }
+    {
+      "name": "Treasure Island",
+      "author": "Robert Louis Stevensonr",
+      "publisher": "Cassell and Company",
+      "edition": 1,
+      "pages": 292,
+      "releaseDate": "1983-11-14"
+    }
     ```
     
     </td>
@@ -123,11 +123,18 @@ Si estenda questo package npm con il fine di realizzare una piccola applicazione
     <td>GET</td>
     <td>
     
-    ```json
+    ```
+    [
       {
-          "genre": "Jazz",
-          "songsCount": 330
-      }
+        "genre": "Jazz",
+        "songsCount": 330
+      },
+      {
+        "genre": "Pop",
+        "songsCount": 250
+      },
+      ...
+    ]
     ```
     
     </td>
@@ -308,11 +315,16 @@ Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm sta
 
 ### FAQ
 
+- **È installare nuovi packages tramite npm?**<br>
+  Si, è installare qualsivoglia nuovo package.
+
+<hr>
+
 - **È necessario adottare qualche stile di scrittura di codice JavaScript in particolare?**<br>
-  E' preferibile la scrittura di codice JavaScript ES6 e l'uso dei costrutti ```Promise/async/await``` per la gestione di task asincroni.
+  È preferibile la scrittura di codice JavaScript ES6 e l'uso dei costrutti ```Promise/async/await``` per la gestione di task asincroni.
 
 <hr>
 
 - **È possibile modificare qualsiasi file di questa cartella?**<br>
-  Il candidato può modificare qualsiasi file ```.js``` ad eccezione dei contenuti della cartella ```__SEALED__```. E' ammesso aggiungere nuovi file ```.js``` e creare cartelle e sottocartelle per i file ```.js``` aggiunti.
+  Il candidato può modificare qualsiasi file ad eccezione dei contenuti della cartella ```__SEALED__```. È ammesso aggiungere nuovi file e creare cartelle e sottocartelle per i file aggiunti.
 
