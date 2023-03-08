@@ -335,8 +335,8 @@ Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm sta
 
 ### FAQ
 
-- **È installare nuovi packages tramite npm?**<br>
-  Si, è installare qualsivoglia nuovo package.
+- **È ammesso installare nuovi packages tramite npm?**<br>
+  Si, è ammesso installare qualsivoglia nuovo package.
 
 <hr>
 
