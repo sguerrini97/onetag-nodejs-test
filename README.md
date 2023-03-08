@@ -1,8 +1,25 @@
-# Test Backend Developer
+# Test Backend Developer OneTag
 
-### Consegna
+Questo README contiene tutte le istruzioni per sviluppare e consegnare il test tecnico di candidatura alla posizione di Backend Developer per il team ```main-tag``` di OneTag.
 
-Si estenda questo package npm con il fine di realizzare una piccola applicazione in Node.js facendo uso del framework Express. L'applicazione sviluppata consiste di una semplice API che deve includere le seguenti rotte:
+### Requisiti tecnici
+
+Affinché il progetto possa essere avviato correttamente, è necessario che sulla macchina del candidato siano installati:
+
+- [NodeJS](https://nodejs.org/en/)
+- [Docker](https://www.docker.com/)
+
+### Cosa fare
+
+- Leggere attentamente questo README.
+- Clonare questo repository.
+- Estenderne i contenuti modificando il file ```index.js``` e/o aggiungendo tutti i file e/o le sottocartelle che il candidato ritiene necessari/e, con il fine di realizzare un'applicazione che rispetti la [specifica](#specifica).
+- Creare l'archivio .zip di consegna tramite il comando ```npm run build```.
+- Compilare il [form di consegna](https://docs.google.com/forms/d/e/1FAIpQLSe3D_gW8YQ4hO0WueD-kDVUsDDDeVSAdAUrZzeDYNLExiYRWA/viewform) caricando l'archivio prodotto al passo precedente. 
+
+### Specifica
+
+Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una piccola applicazione in Node.js facendo uso del framework Express. L'applicazione da sviluppare consiste di un webserver (in ascolto all'URL http://localhost:8080) che deve esporre un'API con le seguenti rotte:
 
 -
     <table>
@@ -73,7 +90,7 @@ Si estenda questo package npm con il fine di realizzare una piccola applicazione
     </tbody>
     </table>
 
-    Inserisce all'interno della collection ```books``` di MongoDB un nuovo document con i dati presenti nel body della chiamata. Se l'oggetto passato nel body non rispetta il modello ([vedi sotto](#modello-del-database)) la rotta deve rispondere con un opportuno codice di errore.
+    Inserisce all'interno della collection ```books``` di MongoDB un nuovo document con i dati presenti nel body della chiamata. Se l'oggetto passato nel body non rispetta il modello ([vedi sotto](#database)) la rotta deve rispondere con un opportuno codice di errore.
 
 -
     <table>
@@ -110,7 +127,7 @@ Si estenda questo package npm con il fine di realizzare una piccola applicazione
     </tbody>
     </table>
 
-  Preleva dalla collection 'books' di MongoDB il documento con _id uguale al parametro [id] specificato nel path e lo restituisce in formato JSON. Se tale documento non è presente nella collection la rotta risponde con 404.
+  Preleva dalla collection ```books``` di MongoDB il documento con ```_id``` uguale al parametro ```[id]``` specificato nel path e lo restituisce in formato JSON. Se tale documento non è presente nella collection la rotta risponde con un opportuno codice di errore.
 
 -
     <table>
@@ -150,9 +167,11 @@ Si estenda questo package npm con il fine di realizzare una piccola applicazione
     </tbody>
     </table>
 
-  Recupera una lista di pezzi musicali chiamando il servizio esterno Songs ([vedi sotto](#songs)), ne aggrega i dati ottenuti e restituisce la lista JSON di tutti i generi musicali, ciascuno con il numero di pezzi musicali che ne fanno parte.
+  Recupera una lista di pezzi musicali chiamando il servizio esterno Songs ([vedi sotto](#songs)), ne aggrega i dati ottenuti e restituisce la lista JSON di **tutti** i generi musicali, ciascuno con il numero di pezzi musicali che ne fanno parte.
 
-### Modello del Database
+### Database
+
+Il database usato dall'applicazione **deve** chiamarsi ```test-nodejs```.
 
 La collection di MongoDB ```books``` deve contenere documenti che soddisfano il seguente schema:
 
@@ -169,9 +188,9 @@ La collection di MongoDB ```books``` deve contenere documenti che soddisfano il 
 
 La chiave della collection ```books``` è costituita dai campi ```name```, ```author```, ```publisher```, ```edition``` e non devono di conseguenza esistere due documenti nella collection che presentano identici i valori di tutti questi campi. L'_id di un nuovo document può essere autogenerato da MongoDB.
 
-### Servizi Esterni
+### Servizi esterni
 
-I servizi esterni rappresentano simbolicamente API di terze parti a cui il candidato deve appoggiarsi per implementare l'API da consegnare.
+I servizi esterni rappresentano una simulazione in locale di API di terze parti a cui il candidato deve appoggiarsi per implementare l'applicazione da consegnare.
 
 #### Songs
 
@@ -313,7 +332,7 @@ Il servizio esterno Auth viene avviato automaticamente dal comando ```npm start`
 <td>GET</td>
 <td>
 
-Restituisce un token per l'autenticazione del servizio esterno Songs ([vedi sopra](#songs)).
+Restituisce un token per l'autenticazione del servizio esterno [Songs](#songs).
 
 </td>
 <td>
@@ -333,7 +352,23 @@ Restituisce un token per l'autenticazione del servizio esterno Songs ([vedi sopr
 
 Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm start```, in ascolto su ```localhost``` alla sua porta di default.
 
+### Tutti i comandi
+
+- ```npm start``` (o ```npm run start```) avvia tutti i processi dell'applicazione in un container Docker:
+  - L'API sviluppata dal candidato, con ```index.js``` come entry point ed in ascolto all'URL http://localhost:8080. Questo processo è avviato tramite [nodemon](https://nodemon.io/), configurato per riavviare automaticamente il processo in seguito a qualsiasi modifica dei suoi sorgenti (```index.js``` e tutti i moduli da esso eventualmente importati).
+  - Il servizio esterno [Songs](#songs), in ascolto all'URL http://localhost:9009.
+  - Il servizio esterno [Auth](#auth), in ascolto all'URL http://localhost:9010.
+- ```npm run build```: comprime la cartella del progetto (```node_modules``` esclusi) in un archivio al percorso ```./dist/consegna.zip```. Questo archivio deve essere consegnato tramite il [form di consegna](https://docs.google.com/forms/d/e/1FAIpQLSe3D_gW8YQ4hO0WueD-kDVUsDDDeVSAdAUrZzeDYNLExiYRWA/viewform).
+
 ### FAQ
+
+- **È possibile modificare qualsiasi file di questa cartella?**<br>
+  Il candidato può modificare e/o aggiungere qualsiasi file/cartella al progetto, con le seguenti eccezioni:
+  - I contenuti della cartella ```__SEALED__``` non devono essere modificati.
+  - Il file ```index.js``` nella root del progetto **non deve essere spostato né rinominato**, poiché viene assunto essere l'entry point dell'applicazione sviluppata dal candidato.
+  - Il file ```package.json``` **non deve essere modificato**, ad eccezione di eventuali dipendenze aggiunte ad esso dall'istallazione di nuovi packages (con ```npm install```).
+
+<hr>
 
 - **È ammesso installare nuovi packages tramite npm?**<br>
   Si, è ammesso installare qualsivoglia nuovo package.
@@ -341,10 +376,8 @@ Un'istanza locale di MongoDB 5 è automaticamente avviata dal comando ```npm sta
 <hr>
 
 - **È necessario adottare qualche stile di scrittura di codice JavaScript in particolare?**<br>
-  È preferibile la scrittura di codice JavaScript ES6 e l'uso dei costrutti ```Promise/async/await``` per la gestione di task asincroni.
+  È preferibile la scrittura di codice JavaScript ES6 e l'uso dei costrutti ```Promise/async/await``` per la gestione di task asincroni, ove possibile.
 
-<hr>
 
-- **È possibile modificare qualsiasi file di questa cartella?**<br>
-  Il candidato può modificare qualsiasi file ad eccezione dei contenuti della cartella ```__SEALED__```. È ammesso aggiungere nuovi file e creare cartelle e sottocartelle per i file aggiunti.
+
 
