@@ -86,7 +86,11 @@ Si estenda questo package npm con il fine di realizzare una piccola applicazione
     </thead>
     <tbody>
     <tr>
-    <td>/books/[id]</td>
+    <td>
+  
+    ```/books/[id]```
+  
+    </td>
     <td>GET</td>
     <td>
     
@@ -119,7 +123,11 @@ Si estenda questo package npm con il fine di realizzare una piccola applicazione
     </thead>
     <tbody>
     <tr>
-    <td>/songs</td>
+    <td>
+  
+    ```/songs```
+  
+    </td>
     <td>GET</td>
     <td>
     
@@ -180,7 +188,11 @@ Il servizio esterno Songs viene avviato automaticamente dal comando ```npm start
     </thead>
     <tbody>
     <tr>
-    <td>/count</td>
+    <td>
+  
+    ```/count```
+  
+    </td>
     <td>GET</td>
     <td>
     
@@ -208,7 +220,11 @@ Il servizio esterno Songs viene avviato automaticamente dal comando ```npm start
   </thead>
   <tbody>
   <tr>
-  <td>/</td>
+  <td>
+  
+  ```/```
+  
+  </td>
   <td>GET</td>
   <td>
 
@@ -289,7 +305,11 @@ Il servizio esterno Auth viene avviato automaticamente dal comando ```npm start`
 </thead>
 <tbody>
 <tr>
-<td>/access-token</td>
+<td>
+
+```/access-token```
+
+</td>
 <td>GET</td>
 <td>
 
