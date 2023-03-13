@@ -35,7 +35,6 @@ function authenticate() {
 
 (async () => {
     try {
-        const port = 9009;
         const app = express();
         const count = 1800;
         app.use(express.urlencoded({ extended: false }));
@@ -74,8 +73,8 @@ function authenticate() {
                 .status(200)
                 .send(items.slice(offset, offset + limit));
         });
-        app.listen(port, () => {
-            console.log(`Listening on http://localhost:${port}`);
+        app.listen(process.env.SONGS_PORT, () => {
+            console.log(`Listening on http://localhost:${process.env.SONGS_PORT}`);
         });
     } catch(error) {
         console.error(error);

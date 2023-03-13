@@ -3,7 +3,6 @@ const {cypher} = require('../crypto');
 
 (async () => {
     try {
-        const port = 9010;
         const app = express();
         app.use(express.urlencoded({ extended: false }));
         app.use(express.json());
@@ -11,8 +10,8 @@ const {cypher} = require('../crypto');
             const ttl = Date.now() + (1000 * 60 * 60);
             res.send({ 'TOKEN-V1': cypher(String(ttl)) });
         });
-        app.listen(port, () => {
-            console.log(`Listening on http://localhost:${port}`);
+        app.listen(process.env.AUTH_PORT, () => {
+            console.log(`Listening on http://localhost:${process.env.AUTH_PORT}`);
         });
     } catch(error) {
         console.error(error);

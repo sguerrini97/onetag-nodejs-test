@@ -5,15 +5,15 @@ services:
     image: mongo:5
     restart: unless-stopped
     network_mode: "host"
-    command: mongod --quiet --logpath /dev/null
+    command: mongod --quiet --logpath /dev/null --port 27018
   server:
     build:
       context: .
-      dockerfile: __SEALED__/Dockerfile
+      dockerfile: __SEALED__/test.Dockerfile
     restart: unless-stopped
     network_mode: "host"
     env_file:
-      - __SEALED__/.env
+      - __SEALED__/.test.env
     volumes:
       - ./:/usr/src/app
     depends_on:

@@ -4,8 +4,8 @@ const express = require('express');
     try {
         const app = express();
         // Custom code
-        app.listen(8080, () => {
-            console.log('Listening on http://localhost:8080');
+        app.listen(process.env.SERVER_PORT, () => {
+            console.log(`Listening on http://localhost:${process.env.SERVER_PORT}`);
         });
     } catch(error) {
         console.error(error);

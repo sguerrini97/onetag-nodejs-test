@@ -9,4 +9,4 @@ RUN npm install
 
 COPY .. .
 
-CMD [ "npm", "run", "start:services" ]
+CMD [ "npm", "run", "start:services:test" ]
