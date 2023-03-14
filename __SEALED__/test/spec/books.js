@@ -41,7 +41,7 @@ describe('/books', () => {
         expect(response.ok).not.to.be.true;
     });
 
-    it('POST inserts a new document', async () => {
+    it('POST adds a new document into the database', async () => {
         const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
             .post('/books')
             .set('Accept', 'application/json')
@@ -59,6 +59,14 @@ describe('/books', () => {
         expect(document).not.to.be.null;
     });
 
+    it('POST Subsequent request with same key properties fail with error', async () => {
+        throw 'Missing implementation';
+    });
+
+    it('POST Subsequent request with same non key properties respond with success', async () => {
+        throw 'Missing implementation';
+    });
+
     describe('/[id]', () => {
 
         it('GET responds with non 200 on unknown id', async () => {
@@ -67,7 +75,7 @@ describe('/books', () => {
             expect(response.status).not.to.equal(200);
         });
 
-        it('Retrieves a POST inserted document', async () => {
+        it('GET responds with a POST inserted document', async () => {
             const book = {
                 "name": "Treasure Island",
                 "author": "Robert Louis Stevensonr",
