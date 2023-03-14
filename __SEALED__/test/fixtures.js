@@ -5,8 +5,8 @@ const {until} = require('./utils');
 exports.mochaGlobalSetup = async function () {
     const client = new MongoClient(`mongodb://localhost:${process.env.DATABASE_PORT}`)
     global['client'] = client;
+    await client.connect();
     global['database'] = client.db(process.env.DATABASE_NAME);
-    await global['database'].connect();
     await Promise.all([
         process.env.AUTH_PORT,
         process.env.SONGS_PORT,
@@ -15,7 +15,7 @@ exports.mochaGlobalSetup = async function () {
 };
 
 exports.mochaGlobalTeardown = async function () {
-    await global['database'].close()
+    await global['client'].close()
 };
 
 
