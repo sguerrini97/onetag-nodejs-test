@@ -65,6 +65,7 @@ Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una
     <th>Path</th>
     <th>Metodo</th>
     <th>Esempio di body in richiesta</th>
+    <th>Esempio di body in risposta</th>
     </tr>
     </thead>
     <tbody>
@@ -89,11 +90,20 @@ Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una
     ```
   
     </td>
+  <td>
+
+    ```json
+    {
+      "id": "a9f694c5-2099-404c"
+    }
+    ```
+
+    </td>
     </tr>
     </tbody>
     </table>
 
-    Inserisce all'interno della collection ```books``` di MongoDB un nuovo document con i dati presenti nel body della chiamata. Se l'oggetto passato nel body non rispetta il modello ([vedi sotto](#database)) la rotta deve rispondere con un opportuno codice di errore.
+    Inserisce all'interno della collection ```books``` di MongoDB un nuovo document con i dati presenti nel body della chiamata. Se l'oggetto passato nel body non rispetta il modello ([vedi sotto](#database)) la rotta deve rispondere con un opportuno codice di errore. La rotta deve rispondere con un oggetto JSON contenente l'id del documento appena aggiunto.
 
 -
     <table>
