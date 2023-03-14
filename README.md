@@ -6,8 +6,11 @@ Questo README contiene tutte le istruzioni per sviluppare e consegnare il test t
 
 Affinché il progetto possa essere avviato correttamente, è necessario che sulla macchina del candidato siano installati:
 
-- [NodeJS](https://nodejs.org/en/)
 - [Docker](https://www.docker.com/)
+
+Ai fini di sviluppo, si consiglia di installare anche:
+
+- [NodeJS](https://nodejs.org/en/)
 
 ### Cosa fare
 

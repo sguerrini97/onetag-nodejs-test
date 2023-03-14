@@ -12,7 +12,7 @@
     "start:dev:main": "nodemon --ignore __SEALED__ ./index.js",
     "start:auth": "node __SEALED__/auth_service/index.js",
     "start:songs": "node __SEALED__/songs_service/index.js",
-    "start:test": "mocha __SEALED__/spec/index.js",
+    "start:test": "mocha --require __SEALED__/test/fixtures.js __SEALED__/test/spec/*.js",
     "start:services": "concurrently --names \"Songs_API,Auth_API,Server\" \"npm run start:songs\" \"npm run start:auth\" \"npm run start:dev:main\" --kill-others",
     "start:services:test": "concurrently --kill-others --success \"last\" --names \"Songs_API,Auth_API,Server,Test\" \"npm run start:songs\" \"npm run start:auth\" \"npm run start:main\" \"npm run start:test\"",
     "start": "docker compose --project-name onetag --project-directory . -f __SEALED__/docker-compose.yml up --abort-on-container-exit --build --force-recreate --renew-anon-volumes --remove-orphans",
