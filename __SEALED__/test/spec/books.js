@@ -59,12 +59,61 @@ describe('/books', () => {
         expect(document).not.to.be.null;
     });
 
-    it('POST Subsequent request with same key properties fail with error', async () => {
-        throw 'Missing implementation';
+    it('POST subsequent request with same key properties fail with error', async () => {
+        await request(`http://localhost:${process.env.SERVER_PORT}`)
+            .post('/books')
+            .set('Accept', 'application/json')
+            .send({
+                "name": "Treasure Island",
+                "author": "Robert Louis Stevensonr",
+                "publisher": "Cassell and Company",
+                "edition": 1,
+                "pages": 292,
+                "releaseDate": "1983-11-14"
+            })
+            .expect('Content-Type', /json/)
+            .expect(200);
+        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+            .post('/books')
+            .set('Accept', 'application/json')
+            .send({
+                "name": "Treasure Island",
+                "author": "Robert Louis Stevensonr",
+                "publisher": "Cassell and Company",
+                "edition": 1,
+                "pages": 400,
+                "releaseDate": "1983-10-14"
+            });
+        expect(response.status).not.to.equal(200);
     });
 
-    it('POST Subsequent request with same non key properties respond with success', async () => {
-        throw 'Missing implementation';
+    it('POST subsequent request with same non key properties respond with success', async () => {
+        await request(`http://localhost:${process.env.SERVER_PORT}`)
+            .post('/books')
+            .set('Accept', 'application/json')
+            .send({
+                "name": "Treasure Island",
+                "author": "Robert Louis Stevensonr",
+                "publisher": "Cassell and Company",
+                "edition": 1,
+                "pages": 292,
+                "releaseDate": "1983-11-14"
+            })
+            .expect('Content-Type', /json/)
+            .expect(200);
+        await request(`http://localhost:${process.env.SERVER_PORT}`)
+            .post('/books')
+            .set('Accept', 'application/json')
+            .send({
+                "name": "Treasure Island",
+                "author": "Robert Louis Stevensonr",
+                "publisher": "Cassell and Company",
+                "edition": 2,
+                "pages": 292,
+                "releaseDate": "1983-11-14"
+            })
+            .expect('Content-Type', /json/)
+            .expect(200);
     });
 
     describe('/[id]', () => {

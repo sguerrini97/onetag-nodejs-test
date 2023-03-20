@@ -1,7 +1,6 @@
 const express = require('express');
-const {faker} = require('@faker-js/faker');
 const {decypher} = require('../crypto');
-const {v4: uuid} = require('uuid');
+const songs = require('./songs');
 
 function authenticate() {
     return function(req, res, next) {
@@ -58,20 +57,9 @@ function authenticate() {
                     error: '"limit" query parameter must be lower than 500',
                 });
             }
-            const items = [];
-            faker.seed(0);
-            for (let i = 0; i < count; i++) {
-                items.push({
-                    id: uuid(),
-                    name: faker.music.songName(),
-                    author: faker.name.fullName(),
-                    genre: faker.music.genre(),
-                    description: faker.lorem.text(),
-                })
-            }
             return res
                 .status(200)
-                .send(items.slice(offset, offset + limit));
+                .send(songs.get(offset, offset + limit));
         });
         app.listen(process.env.SONGS_PORT, () => {
             console.log(`Listening on http://localhost:${process.env.SONGS_PORT}`);

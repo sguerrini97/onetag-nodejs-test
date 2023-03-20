@@ -376,9 +376,9 @@ Restituisce un token per l'autenticazione del servizio esterno [Songs](#songs). 
 
 - **È possibile modificare qualsiasi file di questa cartella?**<br>
   Il candidato può modificare e/o aggiungere qualsiasi file/cartella al progetto, con le seguenti eccezioni:
-  - I contenuti della cartella ```__SEALED__``` non devono essere modificati.
+  - I contenuti della cartella ```__SEALED__``` non devono essere modificati. I moduli ```js``` contenuti in questa cartella **non possono** essere importati dal codice scritto dal candidato.
   - Il file ```index.js``` nella root del progetto **non deve essere spostato né rinominato**, poiché viene assunto essere l'entry point dell'applicazione sviluppata dal candidato.
-  - Il file ```package.json``` **non deve essere modificato**, ad eccezione di eventuali dipendenze aggiunte ad esso dall'istallazione di nuovi packages (con ```npm install```).
+  - Il file ```package.json``` **non deve essere modificato**, ad eccezione di eventuali dipendenze aggiunte ad esso dall'istallazione di nuovi packages (con ```npm install```) ed eventuali script npm **aggiuntivi** previsti dal candidato.
 
 <hr>
 
@@ -395,6 +395,11 @@ Restituisce un token per l'autenticazione del servizio esterno [Songs](#songs). 
 
 - **È possibile consegnare un'implementazione parziale della specifica?**<br>
   È possibile consegnare un'implementazione parziale, che sarà valutata con un punteggio inferiore.
+
+<hr>
+
+- **È possibile consegnare un'implementazione che non passa i test?**<br>
+  È possibile consegnare un'implementazione che non passa i test, che sarà valutata con un punteggio inferiore.
 
 
 
