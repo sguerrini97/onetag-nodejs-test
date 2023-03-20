@@ -363,6 +363,10 @@ Restituisce un token per l'autenticazione del servizio esterno [Songs](#songs). 
 </tbody>
 </table>
 
+### Tests
+
+Il comando ```npm run test``` verifica che l'implementazione del candidato soddisfi le richieste della specifica. Il test runner si aspetta che l'API sviluppata dal candidato sia attiva ed in ascolto alla sua porta. È quindi necessario, prima di invocare ```npm run test```, che l'applicazione sia stata avviata con ```npm start```.
+
 ### Tutti i comandi
 
 - ```npm start``` (o ```npm run start```) avvia tutti i processi dell'applicazione in dei container Docker:
@@ -370,6 +374,7 @@ Restituisce un token per l'autenticazione del servizio esterno [Songs](#songs). 
   - L'API sviluppata dal candidato, con ```index.js``` come entry point ed in ascolto all'URL http://localhost:8080. Per favorire lo sviluppo, questo processo è avviato tramite [nodemon](https://nodemon.io/), configurato per riavviare automaticamente il processo in seguito a qualsiasi modifica dei suoi sorgenti (```index.js``` e tutti i moduli da esso eventualmente importati).
   - Il servizio esterno [Songs](#songs), in ascolto all'URL http://localhost:9009.
   - Il servizio esterno [Auth](#auth), in ascolto all'URL http://localhost:9010.
+- ```npm run test```: testa l'implementazione proposta dal candidato attualmente avviata tramite il comando ```npm start```.
 - ```npm run build```: comprime la cartella del progetto (```node_modules``` esclusi) in un archivio al percorso ```./dist/consegna.zip```. Questo archivio deve essere consegnato tramite il [form di consegna](https://docs.google.com/forms/d/e/1FAIpQLSe3D_gW8YQ4hO0WueD-kDVUsDDDeVSAdAUrZzeDYNLExiYRWA/viewform).
 
 ### FAQ
