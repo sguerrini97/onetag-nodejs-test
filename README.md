@@ -165,11 +165,15 @@ Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una
     [
       {
         "genre": "Jazz",
-        "songsCount": 330
+        "songs": [
+            ...
+        ]
       },
       {
         "genre": "Pop",
-        "songsCount": 250
+        "songs": [
+            ...
+        ]
       },
       ...
     ]
@@ -180,7 +184,7 @@ Dopo aver clonato questo repository, lo si estenda con il fine di realizzare una
     </tbody>
     </table>
 
-  Recupera una lista di pezzi musicali chiamando il servizio esterno Songs ([vedi sotto](#songs)), ne aggrega i dati ottenuti e restituisce la lista JSON di **tutti** i generi musicali, ciascuno con il numero di pezzi musicali che ne fanno parte.
+  Recupera una lista di pezzi musicali chiamando il servizio esterno Songs ([vedi sotto](#songs)), ne aggrega i dati ottenuti e restituisce la lista JSON di **tutti** i generi musicali, ciascuno contenente l'array dei pezzi musicali che ne fanno parte.
 
 ### Database
 
