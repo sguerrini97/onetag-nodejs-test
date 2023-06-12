@@ -6,7 +6,7 @@ describe('/books', () => {
     afterEach(async () => {
         const collections = await database.collections();
         if (collections.some((collection) => collection.collectionName === 'books')) {
-            await database.collection('books').drop();
+            await database.collection('books').deleteMany();
         }
     });
 
@@ -147,7 +147,7 @@ describe('/books', () => {
             const {
                 _id,
                 ...response_book
-            } = get_response.body.book;
+            } = get_response.body;
             expect(book).to.deep.equal(response_book);
         });
 
