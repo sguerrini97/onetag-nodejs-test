@@ -21,7 +21,7 @@ services:
       - "${SERVER_PORT}:${SERVER_PORT}"
       - "${SONGS_PORT}:${SONGS_PORT}"
       - "${AUTH_PORT}:${AUTH_PORT}"
-  test:
+  runner:
     build:
       context: .
       dockerfile: __SEALED__/Dockerfile.test
