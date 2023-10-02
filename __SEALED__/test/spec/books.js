@@ -11,7 +11,7 @@ describe('/books', () => {
     });
 
     it('POST responds with 200 on correct body', async () => {
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .post('/books')
             .set('Accept', 'application/json')
             .send({
@@ -29,7 +29,7 @@ describe('/books', () => {
     });
 
     it('POST responds with 400 on invalid body', async () => {
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .post('/books')
             .set('Accept', 'application/json')
             .send(JSON.stringify({
@@ -42,7 +42,7 @@ describe('/books', () => {
     });
 
     it('POST adds a new document into the database', async () => {
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .post('/books')
             .set('Accept', 'application/json')
             .send({
@@ -60,7 +60,7 @@ describe('/books', () => {
     });
 
     it('POST subsequent request with same key properties fail with error', async () => {
-        await request(`http://localhost:${process.env.SERVER_PORT}`)
+        await request(`http://server:${process.env.SERVER_PORT}`)
             .post('/books')
             .set('Accept', 'application/json')
             .send({
@@ -73,7 +73,7 @@ describe('/books', () => {
             })
             .expect('Content-Type', /json/)
             .expect(200);
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .post('/books')
             .set('Accept', 'application/json')
             .send({
@@ -88,7 +88,7 @@ describe('/books', () => {
     });
 
     it('POST subsequent request with same non key properties respond with success', async () => {
-        await request(`http://localhost:${process.env.SERVER_PORT}`)
+        await request(`http://server:${process.env.SERVER_PORT}`)
             .post('/books')
             .set('Accept', 'application/json')
             .send({
@@ -101,7 +101,7 @@ describe('/books', () => {
             })
             .expect('Content-Type', /json/)
             .expect(200);
-        await request(`http://localhost:${process.env.SERVER_PORT}`)
+        await request(`http://server:${process.env.SERVER_PORT}`)
             .post('/books')
             .set('Accept', 'application/json')
             .send({
@@ -119,7 +119,7 @@ describe('/books', () => {
     describe('/[id]', () => {
 
         it('GET responds with non 200 on unknown id', async () => {
-            const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+            const response = await request(`http://server:${process.env.SERVER_PORT}`)
                 .get('/books/641066069a4d9fc445a8a774');
             expect(response.status).not.to.equal(200);
         });
@@ -133,13 +133,13 @@ describe('/books', () => {
                 "pages": 292,
                 "releaseDate": "1983-11-14"
             };
-            const post_response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+            const post_response = await request(`http://server:${process.env.SERVER_PORT}`)
                 .post('/books')
                 .set('Accept', 'application/json')
                 .send(book)
                 .expect('Content-Type', /json/)
                 .expect(200);
-            const get_response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+            const get_response = await request(`http://server:${process.env.SERVER_PORT}`)
                 .get(`/books/${post_response.body.id}`)
                 .set('Accept', 'application/json')
                 .expect('Content-Type', /json/)

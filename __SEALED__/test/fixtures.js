@@ -2,12 +2,9 @@ const {MongoClient} = require('mongodb');
 const {fetch} = require('cross-fetch');
 const {until, timeout} = require('./utils');
 const {expect} = require('chai');
-const dotenv = require('dotenv');
-const path = require('path');
 
 exports.mochaGlobalSetup = async function () {
-    dotenv.config({ path: path.resolve(__dirname, '..', '..', '.env') });
-    const client = new MongoClient(`mongodb://localhost:${process.env.DATABASE_PORT}`)
+    const client = new MongoClient(`mongodb://database:${process.env.DATABASE_PORT}`)
     const result = await Promise.race([
         timeout(3000).then(() => 'timeout'),
         Promise.all([
@@ -16,7 +13,7 @@ exports.mochaGlobalSetup = async function () {
                 process.env.AUTH_PORT,
                 process.env.SONGS_PORT,
                 process.env.SERVER_PORT,
-            ].map((port) => until(() => fetch(`http://localhost:${port}`))))
+            ].map((port) => until(() => fetch(`http://server:${port}`))))
         ]),
     ]);
     if (result === 'timeout') {

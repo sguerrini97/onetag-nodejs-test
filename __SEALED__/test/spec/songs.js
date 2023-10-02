@@ -4,7 +4,7 @@ const songs = require('../../songs_service/songs');
 describe('/songs', () => {
 
     it('GET responds with JSON array', async () => {
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .get('/songs')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -13,7 +13,7 @@ describe('/songs', () => {
     });
 
     it('GET responds with the correct genres count', async () => {
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .get('/songs')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -29,7 +29,7 @@ describe('/songs', () => {
 
     it('GET responds with known songs', async function () {
         this.timeout(1000 * 60 * 3);
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .get('/songs')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -40,7 +40,7 @@ describe('/songs', () => {
     });
 
     it('GET responds with a matching total songs count', async () => {
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .get('/songs')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -50,7 +50,7 @@ describe('/songs', () => {
     });
 
     it('GET responds with the correct songs count per genre', async () => {
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .get('/songs')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)

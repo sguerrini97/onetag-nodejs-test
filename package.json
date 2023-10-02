@@ -13,8 +13,9 @@
     "start:auth": "node __SEALED__/auth_service/index.js",
     "start:songs": "node __SEALED__/songs_service/index.js",
     "start:services": "concurrently --names \"Songs_API,Auth_API,Server\" \"npm run start:songs\" \"npm run start:auth\" \"npm run start:dev:main\" --kill-others",
-    "start": "docker compose --project-name onetag --project-directory . -f __SEALED__/docker-compose.yml up --abort-on-container-exit --build --force-recreate --renew-anon-volumes --remove-orphans",
-    "test": "mocha --extension js --bail --require __SEALED__/test/fixtures.js __SEALED__/test/spec/tests.js"
+    "start": "docker compose --env-file ./.env --project-name onetag-app --project-directory . -f __SEALED__/start.yml up --abort-on-container-exit --build --force-recreate --renew-anon-volumes --remove-orphans",
+    "testrunner": "mocha --extension js --bail --require __SEALED__/test/fixtures.js __SEALED__/test/spec/tests.js",
+    "test": "docker compose --env-file ./.env --project-name onetag-app-test --project-directory . -f __SEALED__/test.yml up --abort-on-container-exit --build --force-recreate --renew-anon-volumes --remove-orphans"
   },
   "repository": {
     "type": "git",

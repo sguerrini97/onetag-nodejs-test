@@ -4,18 +4,21 @@ services:
   database:
     image: mongo:5
     restart: unless-stopped
-    network_mode: "host"
     command: mongod --quiet --logpath /dev/null
+    expose:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
   server:
     build:
       context: .
-      dockerfile: __SEALED__/Dockerfile
-    restart: unless-stopped
-    network_mode: "host"
+      dockerfile: __SEALED__/Dockerfile.server
     env_file:
       - .env
     volumes:
       - ./:/usr/src/app
     depends_on:
       - "database"
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${SONGS_PORT}:${SONGS_PORT}"
+      - "${AUTH_PORT}:${AUTH_PORT}"
 

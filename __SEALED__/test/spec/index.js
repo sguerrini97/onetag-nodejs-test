@@ -3,7 +3,7 @@ const request = require('supertest');
 describe('/', () => {
 
     it('GET responds with HTML Hello World', async () => {
-        const response = await request(`http://localhost:${process.env.SERVER_PORT}`)
+        const response = await request(`http://server:${process.env.SERVER_PORT}`)
             .get('/')
             .set('Accept', 'text/html')
             .expect('Content-Type', /html/)
