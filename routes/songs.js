@@ -50,7 +50,7 @@ router.get('/', async (req, res) => {
             headers: {
                 'TOKEN-V1': accessToken.token,
             },
-        }))?.data?.count;
+        }))?.data?.count ?? 0;
 
         const genres = [];
 
@@ -63,7 +63,7 @@ router.get('/', async (req, res) => {
                 url: `${SONGS_SERVICE_URL}/`,
                 params: {
                     limit: SONGS_PER_PAGE,
-                    offset: page * SONGS_PER_PAGE,
+                    offset: (page++) * SONGS_PER_PAGE,
                 },
                 headers: {
                     'TOKEN-V1': accessToken.token,
