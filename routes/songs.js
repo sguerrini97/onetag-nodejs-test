@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
             },
         }))?.data?.count ?? 0;
 
-        const genres = [];
+        const genres = new Map();
 
         let page = 0;
         while (songsCount > 0) {
@@ -71,25 +71,23 @@ router.get('/', async (req, res) => {
             }))?.data;
 
             for (const song of songsPage) {
-                // Find the genre in the genres array
-                let genre = genres.find(genre => genre.genre === song.genre);
-                // Add the genre to the genres array if it's not already there
-                if (!genre) {
-                    genre = {
-                        genre: song.genre,
-                        songs: [],
-                    };
-                    genres.push(genre);
+                // Make sure this song's genre is in the genres Map
+                if (!genres.has(song.genre)) {
+                    genres.set(song.genre, []);
                 }
 
-                // Add the song to the genre
-                genre.songs.push(song);
+                // Add this song to its genre
+                genres.get(song.genre).push(song);
             }
 
             songsCount -= songsPage.length;
         }
 
-        res.status(200).json(genres);
+        res.status(200).json(Array.from(genres, ([genre, songs]) => ({
+            genre: genre,
+            songs: songs
+        })));
+
     } catch (err) {
         console.error(err);
         res.status(503).json();
