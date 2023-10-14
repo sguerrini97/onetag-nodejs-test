@@ -70,12 +70,20 @@ router.get('/', async (req, res) => {
                 },
             }))?.data;
 
-            // Get all the distinct genres from the page and add them to the genres array if they're not already there
-            const pageGenres = [...new Set(songsPage.map(song => song.genre))];
-            for (const genre of pageGenres) {
-                if (!genres.includes(genre)) {
+            for (const song of songsPage) {
+                // Find the genre in the genres array
+                let genre = genres.find(genre => genre.genre === song.genre);
+                // Add the genre to the genres array if it's not already there
+                if (!genre) {
+                    genre = {
+                        genre: song.genre,
+                        songs: [],
+                    };
                     genres.push(genre);
                 }
+
+                // Add the song to the genre
+                genre.songs.push(song);
             }
 
             songsCount -= songsPage.length;
