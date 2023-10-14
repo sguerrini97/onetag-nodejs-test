@@ -39,6 +39,7 @@
     "express-validator": "^7.0.1",
     "mocha": "^10.2.0",
     "mongodb": "^5.1.0",
+    "mongoose": "^7.6.2",
     "nodemon": "^2.0.21",
     "supertest": "^6.3.3"
   }
