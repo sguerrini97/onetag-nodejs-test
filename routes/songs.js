@@ -84,7 +84,7 @@ router.get('/', async (req, res) => {
         res.status(200).json(genres);
     } catch (err) {
         console.error(err);
-        res.status(503).setHeader('TOKEN-V1', _accessToken).json();
+        res.status(503).json();
     }
 });
 
