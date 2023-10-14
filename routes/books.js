@@ -1,16 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { body, param, validationResult } = require('express-validator');
-const { MongoClient, ObjectId } = require('mongodb');
+const mongoose = require('mongoose');
 
-const mongoClient = new MongoClient(`mongodb://database:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`);
-mongoClient.connect().then(() => {
+const Book = require('../models/Book');
+
+mongoose.connect(`mongodb://database:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`).then(() => {
     console.log('Connected to MongoDB');
 }).catch(error => {
     console.error(error);
 });
-
-const booksCollection = mongoClient.db().collection('books');
 
 router.post('/', [
     body('name').notEmpty(),
@@ -29,8 +28,26 @@ router.post('/', [
     } else {
 
         // Store book data in MongoDB and return the new book ID
-        const mongoResult = await booksCollection.insertOne(req.body);
-        res.status(200).json({id: mongoResult.insertedId});
+        const book = new Book(req.body);
+
+        try {
+            
+            await book.validate();
+            const result = await book.save();
+
+            res.status(200).json({id: result._id});
+
+        } catch (error) {
+            switch (error.code) {
+                case 11000:
+                    res.status(409).json();
+                    break;
+                default:
+                    console.log(error);
+                    res.status(500).json(error);
+                    break;
+            }
+        }
     }
 });
 
@@ -48,15 +65,12 @@ router.get('/:id', [
         const bookId = req.params.id;
 
         // Retrieve book data from MongoDB
-        const mongoResult = await booksCollection.findOne({
-            _id: new ObjectId(bookId)
-        });
+        const book = await Book.findById(bookId).select('-_id -__v');
 
-        if (!mongoResult) {
+        if (!book) {
             res.status(404).json();
         } else {
-            delete mongoResult._id;
-            res.status(200).json(mongoResult);
+            res.status(200).json(book);
         }
     }
 
