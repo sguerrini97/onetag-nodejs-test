@@ -70,7 +70,7 @@ router.get('/:id', [
         if (!book) {
             res.status(404).json();
         } else {
-            res.status(200).json(book);
+            res.status(200).json(Book.toDTO(book));
         }
     }
 
