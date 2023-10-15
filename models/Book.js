@@ -29,7 +29,7 @@ const bookSchema = new mongoose.Schema({
 
 /**
  * Converts a Mongoose Book object to its DTO representation
- * @param {Book} book Mongoose Book object
+ * @param book Mongoose Book object
  * @returns DTO representation of the Book object
  */
 bookSchema.statics.toDTO = function (book) {

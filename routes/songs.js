@@ -2,6 +2,7 @@ const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 
+// Constant values
 const AUTH_SERVICE_URL = "http://localhost:9010/access-token";
 const SONGS_SERVICE_URL = "http://localhost:9009";
 const SONGS_PER_PAGE = 100;
@@ -10,31 +11,31 @@ const SONGS_PER_PAGE = 100;
 class AccessToken {
     constructor(token, issuedAt = new Date()) {
         this.token = token;
-        this.expiresAt = issuedAt.getTime() + 1000 * 60 * 59;
+        this.expiresAt = issuedAt.getTime() + 1000 * 60 * 59; // Token expires after 1 hour, we keep it for 59 minutes
     }
 
     isExpired = function() {
         return new Date().getTime() > this.expiresAt;
     }
 }
-let _accessToken = null;
+const _accessTokens = new Map();
 
 /**
- * Retrieve an access token from the Auth service or the last one if it's not expired.
+ * Retrieve an access token from the Auth service or returns the last one if it's not expired.
  * @param {String} version Version of the access token to retrieve. Defaults to V1.
- * @returns Acces token
+ * @returns {AccessToken} Acces token
  */
 const getAccessToken = async function(version = "V1") {
-    if (!_accessToken || _accessToken.isExpired()) {
+    if (!_accessTokens.has(version) || _accessTokens.get(version).isExpired()) {
         const accessTokenResponse = (await axios({
             method: 'GET',
             url: AUTH_SERVICE_URL,
         }))?.data;
 
-        _accessToken = new AccessToken(accessTokenResponse[`TOKEN-${version}`]);
+        _accessTokens.set(version, new AccessToken(accessTokenResponse[`TOKEN-${version}`]));
     }
 
-    return _accessToken;
+    return _accessTokens.get(version);
 };
 
 router.get('/', async (req, res) => {

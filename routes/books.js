@@ -3,8 +3,10 @@ const router = express.Router();
 const { body, param, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
+// MongoDB models
 const Book = require('../models/Book');
 
+// MongoDB connection
 mongoose.connect(`mongodb://database:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`).then(() => {
     console.log('Connected to MongoDB');
 }).catch(error => {
@@ -12,6 +14,7 @@ mongoose.connect(`mongodb://database:${process.env.DATABASE_PORT}/${process.env.
 });
 
 router.post('/', [
+    // Body validation rules
     body('name').notEmpty(),
     body('author').notEmpty(),
     body('publisher').notEmpty(),
@@ -39,6 +42,7 @@ router.post('/', [
 
         } catch (error) {
             switch (error.code) {
+                // E11000 duplicate key error (index violation)
                 case 11000:
                     res.status(409).json();
                     break;
@@ -64,7 +68,7 @@ router.get('/:id', [
 
         const bookId = req.params.id;
 
-        // Retrieve book data from MongoDB
+        // Retrieve book data from MongoDB without the id and version fields
         const book = await Book.findById(bookId).select('-_id -__v');
 
         if (!book) {
