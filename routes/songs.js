@@ -20,6 +20,13 @@ class AccessToken {
 }
 const _accessTokens = new Map();
 
+/**
+ * Fetches a JSON response from the specified URL
+ * @param {*} url URL to fetch
+ * @param {*} headers Request headers
+ * @param {*} params Query parameters object
+ * @returns 
+ */
 const fetchJson = async function(url, headers = {}, params = {}) {
 
     // Add query parameters to the URL
