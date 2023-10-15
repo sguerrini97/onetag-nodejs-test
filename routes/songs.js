@@ -25,7 +25,7 @@ const _accessTokens = new Map();
  * @param {*} url URL to fetch
  * @param {*} headers Request headers
  * @param {*} params Query parameters object
- * @returns 
+ * @returns JSON object
  */
 const fetchJson = async function(url, headers = {}, params = {}) {
 
